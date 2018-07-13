@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ja">
+	<head>
+		<meta charset="utf-8">
+		<title>初めてでもわかる！WordPress開発入門（ローカル環境構築からテーマ制作フロー）</title>
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h2>初めてでもわかる！WordPress開発入門</h2>
+					<h3>（ローカル環境構築からテーマ制作フロー）</h3>
+				</section>
+
+				<section data-background="#ffffff">
+					<h2>本日のアジェンダ</h2>
+					<ol>
+						<li>WordPressとは</li>
+						<li>WordPressのローカル環境構築</li>
+						<li>WordPressのテーマ基本構造</li>
+						<li>WordPressのテーマ開発手順</li>
+                        <li>実際に独自のテーマを作ってみよう</li>
+					</ol>
+				</section>
+				
+				<section data-background="#0073aa">
+					<h1>自己紹介</h1>
+				</section>
+				
+				<section data-background="#ffffff" style="text-align: left;">
+					<h2>宮山 義浩</h2>
+					<h3>Yoshihiro Miyayama</h3>
+					<ul>
+                        <li>SEとしてWebサービスからアプリ開発まで経験</li>
+						<li>2014年、株式会社セラクに入社</li>
+                        <li>フロントエンドエンジニアを経て、教育担当へ</li>
+                        <li>趣味：サイト制作・バドミントン</li>
+					</ul>
+				</section>
+				
+				<section data-background="#0073aa">
+					<h1>WordPressとは</h1>
+				</section>
+				
+				<section data-background="#ffffff">
+                    <section>
+						<h2>WordPressとは</h2>
+						<ul>
+							<li>オープンソースのブログソフトウェア</li>
+                            <li>2003年にオープンソースのブログ作成システムとして公開</li>
+                            
+						</ul>
+					</section>
+					<section>
+						<h3>日本公式キャラクター「わぷー」</h3>
+						<img width="378" height="382" data-src="pictures/wapuu.png" alt="わぷー">
+						<p>カネウチカズコさんがイラストを作成したja.wordpress.org の公式キャラクター</p>
+					</section>
+					<section>
+						<h2>CMSとは</h2>
+						<ul>
+							<li>コンテンツ管理システム：CMS（Contents Management System）</li>
+                            <li>ホームページの制作ができない人でも、簡単にコンテンツを管理できる仕組み</li>
+						</ul>
+					</section>
+					<section>
+						<h2>CMSの種類</h2>
+						<p>現世界で400種類のCMSがある</p>
+						<img width="720" height="360" data-src="pictures/cms-kind.png" alt="CMSの種類">
+					</section>
+					<section>
+						<h2>CMSのシェア</h2>
+						<p>全てのサイトのWebサイトの31%がWordPress</p>
+						<a href="https://w3techs.com/technologies/overview/content_management/all" target="_blank"><img width="946" height="434" data-src="pictures/cms-share.png" alt="CMSのシェア"></a>
+					</section>
+					<section>
+						<h2>WordPressのメリット</h2>
+						<ul>
+							<li>オープンソースで無料で利用できる</li>
+                            <li>専門知識がなくてもサイトを作成できる</li>
+                            <li>テーマを使って、デザインを自由に切り替えできる</li>
+							<li>プラグインで必要な機能を追加できる</li>
+						</ul>
+					</section>
+                    <section>
+						<h2>WordPressのデメリット</h2>
+						<ul>
+                            <li>インストール作業が必要</li>
+							<li>運営コストがかかる</li>
+                            <li>セキュリティが心配</li>
+						</ul>
+					</section>
+					<section>
+						<h2>WordPressサイト例</h2>
+						<ul>
+                            <li><a href="https://info.cookpad.com/" target="_blank">クックパッド株式会社</a></li>
+                            <li><a href="http://corporate.kakaku.com/" target="_blank">株式会社カカクコム</a></li>
+							<li><a href="http://www.musabi.ac.jp/" target="_blank">武蔵野美術大学</a></li>
+							<li><a href="http://www.shibuya109.jp" target="_blank">渋谷109</a></li>
+						</ul>
+					</section>
+					<section>
+						<h2>WordPressの仕組み</h2>
+						<img width="720" height="420" data-src="pictures/cms-function.png" alt="WordPressの仕組み">
+					</section>
+					<section>
+						<h2>サーバー要件</h2>
+						<ul>
+                            <li>PHP バージョン7.2以上</li>
+                            <li>MySQL バージョン5.6または MariaDB バージョン10.0以上</li>
+						</ul>
+					</section>
+					<section>
+						<h2>WordPressの他に必要なもの</h2>
+						<ul>
+                            <li>独自ドメイン（お名前.coなど）</li>
+                            <li>レンタルサーバー（さくら、エックスサーバー）</li>
+						</ul>
+					</section>
+					
+					
+				</section>
+				
+				<section data-background="#0073aa">
+					<h1>ローカル環境構築</h1>
+				</section>
+				
+				<section data-background="#ffffff">
+                    <section>
+						<h2>ローカル環境ツール</h2>
+						<ul>
+							<li>XAMPP：今までの主流</li>
+							<li>VCCW：導入難しい</li>
+                            <li>LOCAL：おススメ！</li>
+						</ul>
+					</section>
+					<section>
+						<h2>LOCALの特徴</h2>
+						<ul>
+							<li>GUIアプリでインストールが簡単</li>
+							<li>GUIで複数のWordPressを管理できる</li>
+                            <li>サーバー知識ゼロでローカル環境を作れる</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Localのダウンロード</h3>
+						<a href="https://local.getflywheel.com/" target="_blank"><img width="1000" height="565" data-src="pictures/local-01.png" alt="Localのダウンロード"></a>
+					</section>
+					<section>
+						<p>「メールアドレス」と「サイトの数」を入力</p>
+						<img width="1000" height="551" data-src="pictures/local-02.png" alt="Localのダウンロードパネル">
+					</section>
+					<section>
+						<p>Localをダブルクリックして、起動</p>
+						<img width="260" height="210" data-src="pictures/local-03.png" alt="Localの起動">
+					</section>
+					<section>
+						<p>「Let's Go!」をクリック</p>
+						<img width="720" height="459" data-src="pictures/local-04.png" alt="Localの起動">
+					</section>
+                    <section>
+						<p>「CREATE A NEW SITE」をクリック</p>
+						<img width="720" height="467" data-src="pictures/local-05.png" alt="Localの起動">
+					</section>
+					<section>
+						<p>サイトの名前を入力</p>
+						<img width="720" height="467" data-src="pictures/local-06.png" alt="Localの起動">
+					</section>
+					<section>
+						<p>推奨を選択</p>
+						<img width="720" height="468" data-src="pictures/local-07.png" alt="Localの起動">
+					</section>
+					<section>
+						<p>管理ユーザーの設定（admin/password）</p>
+						<img width="720" height="469" data-src="pictures/local-08.png" alt="Localの起動">
+					</section>
+					<section>
+						<p>「ADMIN」をクリックして管理画面へ</p>
+						<img width="720" height="467" data-src="pictures/local-09.png" alt="Localの起動">
+					</section>
+					<section>
+						<p>WordPressの管理画面にアクセスする</p>
+						<img width="720" height="404" data-src="pictures/local-10.png" alt="Localの起動">
+					</section>
+					<section>
+						<p>「サイトの言語」を「日本語」に変更</p>
+                        <img width="720" height="407" data-src="pictures/local-11.png" alt="Localの起動">
+					</section>
+					<section>
+						<h3>WordPressデータの格納先</h3>
+                        <pre><code class="hljs">・Macの場合
+Macintosh HD\ユーザ\（ユーザー名）\Local Sites\（プロジェクト名）\app\public\
+
+・Windows
+C:\Users\ユーザー名\Local Sites\サイト名\app\public                  
+</code></pre>
+					</section>
+				</section>
+                
+                <section data-background="#0073aa">
+					<h1>テーマの基本構造</h1>
+				</section>
+				
+				<section data-background="#ffffff">
+                    <section>
+						<h2>WordPressのテーマ</h2>
+						<ul>
+							<li>コンテンツはそのままでサイトの外観だけ変更できる</li>
+							<li>公式の無料テーマは6,000件以上</li>
+						</ul>
+					</section>
+					<section>
+						<h2>WordPressのテーマ構成</h2>
+						<ul>
+							<li>スタイルシート（style.css）</li>
+							<li>テンプレートファイル</li>
+							<li>テーマ関数ファイル</li>
+						</ul>
+					</section>
+					<section>
+						<h2>テンプレートファイル</h2>
+                        <ul>
+							<li>アクセスされたURLに応じてHTMLコードを生成する役割を持つファイル</li>
+							<li>PHPで作られている</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h2>テンプレートファイルの特徴</h2>
+						<ul>
+							<li>テンプレート階層</li>
+							<li>テンプレートタグ</li>
+							<li>ループ</li>
+						</ul>
+					</section>
+					
+					<section>
+						<h2>テンプレート階層</h2>
+                        <ul>
+							<li>テンプレートファイルを出力する際の優先順位を定めたルール</li>
+							<li>テンプレートファイルを自動的に選んで表示してくれる仕組み</li>
+							<li><a href="https://wpdocs.osdn.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E9%9A%8E%E5%B1%A4" target="_blank">テンプレート階層 – WordPress Codex 日本語版</a></li>
+						</ul>
+					</section>
+					<section>
+                        <h2>テンプレート階層</h2>
+						<a href="http://wpdocs.osdn.jp/wiki/images/wp-template-hierarchy.jpg" target="_blank"><img width="720" height="445" data-src="pictures/templete-hierarchy.png" alt="Localの起動"></a>
+					</section>
+					<section>
+						<h2>テンプレートタグ</h2>
+                        <ul>
+							<li>WordPress内のデータを表示するために予め用意されている関数</li>
+							<li>テンプレートタグは、テンプレートファイルの中に記述</li>
+							<li><a href="http://wpdocs.sourceforge.jp/%E3%83%86%E3%83%B3%E3%83%97%E3%83%AC%E3%83%BC%E3%83%88%E3%82%BF%E3%82%B0" target="_blank">テンプレートタグ – WordPress Codex 日本語版</a></li>
+						</ul>
+					</section>
+					<section>
+						<h2>ループ</h2>
+                        <ul>
+							<li>投稿を表示するために使われるPHPコード</li>
+							<li>繰り返し表示する記事のタイトルやリンクを取得するテンプレートタグを記述</li>
+						</ul>
+					</section>
+				</section>
+				
+				<section data-background="#0073aa">
+					<h1>テーマ開発手順</h1>
+				</section>
+				
+				<section data-background="#ffffff">
+                    <section>
+						<h2>テーマ開発の方法</h2>
+						<ul>
+							<li>HTMLからテンプレートファイル化する</li>
+							<li>ブランクテーマをカスタマイズする</li>
+                            <li>既存テーマの子テーマとして作成する</li>
+						</ul>
+					</section>
+                    <section>
+						<h3>HTMLからテンプレートファイル化する</h3>
+						<ul>
+							<li>HTMLとCSS（+JS）でコーディングする</li>
+							<li>テンプレートファイルに分割する</li>
+                            <li>テンプレートタグやループを記述する</li>
+						</ul>
+					</section>
+				</section>
+				
+				<section data-background="#0073aa">
+					<h1>独自テーマ作成の実践</h1>
+				</section>
+				
+				<section data-background="#ffffff">
+                    <section>
+						<h3>テーマを格納するフォルダ作成</h3>
+						<p>「demo」というフォルダを/wp-contet/themes/配下に配置する</p>
+					</section>
+                    <section>
+						<h3>「index.html」をコーディングする</h3>
+                        <pre><code class="hljs">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+	&lt;title&gt;タイトル&lt;/title&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;header&gt;
+		&lt;h1&gt;&lt;a href=&quot;&quot;&gt;サンプルサイト&lt;/a&gt;&lt;/h1&gt;
+	&lt;/header&gt;
+	&lt;main&gt;
+		&lt;section&gt;
+			&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
+			&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
+		&lt;/section&gt;
+		&lt;section&gt;
+			&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
+			&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
+		&lt;/section&gt;
+		&lt;section&gt;
+			&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
+			&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
+		&lt;/section&gt;
+	&lt;/main&gt;
+	&lt;aside&gt;
+		&lt;h2&gt;カテゴリ&lt;/h2&gt;
+		&lt;ul&gt;
+			&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリA&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリB&lt;/a&gt;&lt;/li&gt;
+			&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリC&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/aside&gt;
+	&lt;footer&gt;
+		&lt;small&gt;©2018 xxxx&lt;/small&gt;
+	&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>「style.css」をコーディングする</h3>
+                        <pre><code class="hljs">@charset &quot;utf-8&quot;;
+/*
+Theme Name: demo
+Theme URI: http://demo.com/
+Description: サンプルテーマ
+Version: 1.0
+Author: xxxxx
+Author URI: http://demo.com/
+*/
+
+/* 以下ブログテーマのスタイル */
+main {
+	float: left;
+	width: 70%;
+}
+
+aside {
+	float: right;
+    width: 25%;
+}
+
+footer {
+	clear: both;
+    text-align: center;
+}
+</code></pre>
+					</section>
+                    <section>
+						<h3>テンプレートファイルに分割する</h3>
+						<pre><code class="hljs">トップページ:index.php
+ヘッダー：header.php
+フッター：footer.php
+サイドバー：sidebar.php
+記事ページ：single.php
+テーマ関数ファイル：functions.php
+スタイルシート：style.css
+</code></pre>
+					</section>
+                    <section>
+						<h3>header.phpを作成する</h3>
+						<pre><code class="hljs">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+	&lt;title&gt;タイトル&lt;/title&gt;
+	&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;header&gt;
+		&lt;h1&gt;&lt;a href=&quot;&quot;&gt;サンプルサイト&lt;/a&gt;&lt;/h1&gt;
+	&lt;/header&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>header.phpを作成する</h3>
+                        <p>titleタグ部分を以下のように書き換え</p>
+						<pre><code class="hljs"><title><?php wp_title(' | ', true, 'right'); ?></title>
+</code></pre>
+					</section>
+                    <section>
+						<h3>header.phpを作成する</h3>
+                        <p>スタイルシートのリンク先を以下のように書き換え</p>
+						<pre><code class="hljs"><link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
+</code></pre>
+					</section>
+                    <section>
+						<h3>header.phpを作成する</h3>
+                        <p>head終了タグの直前の行に以下のタグを挿入</p>
+						<pre><code class="php">&lt;?php wp_head(); ?&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>header.phpを作成する</h3>
+                        <p>h1タグ部分を以下のように書き換え</p>
+						<pre><code class="hljs">&lt;h1&gt;&lt;a href=&quot;&lt;?php echo esc_url( home_url( '/' ) ); ?&gt;&quot;&gt;&lt;?php bloginfo('name'); ?&gt;&lt;/a&gt;&lt;/h1&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>footer.phpを作成する</h3>
+						<pre><code class="hljs">    &lt;footer&gt;
+        &lt;small&gt;©2018 xxxx&lt;/small&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>footer.phpを作成する</h3>
+                        <p>body終了タグの前の行に以下のタグを挿入</p>
+						<pre><code class="hljs">&lt;?php wp_footer(); ?&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>sidebar.phpを作成する</h3>
+						<pre><code class="hljs">&lt;aside&gt;
+&lt;?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar() ) : ?&gt;
+	&lt;h2 class=&quot;widget_title&quot;&gt;About&lt;/h2&gt;
+	&lt;p&gt;ウィジェットが設定されていない場合、ここが表示されます。&lt;/p&gt;
+&lt;?php endif; ?&gt;
+&lt;/aside&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>functtions.phpを作成する</h3>
+						<pre><code class="hljs">&lt;?php
+if ( function_exists('register_sidebar') ) {
+	register_sidebar(array(
+		'id' =&gt; 'sidebar-1',
+		'before_widget' =&gt; '',
+		'after_widget' =&gt; '',
+		'before_title' =&gt; '&lt;h2 class=&quot;widget_title&quot;&gt;',
+		'after_title' =&gt; '&lt;/h2&gt;',
+	));
+}
+</code></pre>
+					</section>
+                    <section>
+						<h3>index.phpを作成する</h3>
+						<pre><code class="hljs">&lt;?php get_header(); ?&gt;
+
+&lt;?php get_sidebar(); ?&gt;
+&lt;?php get_footer(); ?&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>index.phpを作成する</h3>
+						<pre><code class="hljs">&lt;main&gt;
+		&lt;?php
+		if ( have_posts() ) : while ( have_posts() ) : the_post();
+		?&gt;
+
+		&lt;section class=&quot;post&quot;&gt;
+			&lt;h2&gt;&lt;a href=&quot;&lt;?php the_permalink(); ?&gt;&quot;&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h2&gt;
+			&lt;?php the_excerpt(); ?&gt;
+		&lt;/section&gt;
+
+		&lt;?php
+		endwhile;
+		endif;
+		?&gt;
+	&lt;/main&gt;
+</code></pre>
+					</section>
+                    <section>
+						<h3>single.phpを作成する</h3>
+						<pre><code class="hljs">&lt;?php get_header(); ?&gt;
+
+&lt;main&gt;
+   &lt;?php
+    if ( have_posts() ) : while ( have_posts() ) : the_post();
+    ?&gt;
+    
+        &lt;article&gt;
+            &lt;h2&gt;&lt;?php the_title(); ?&gt;&lt;/h2&gt;
+            &lt;?php the_content(); ?&gt;
+        &lt;/article&gt;
+    
+    &lt;?php
+    endwhile;
+    endif;
+    ?&gt;
+&lt;/main&gt;
+
+&lt;?php get_sidebar(); ?&gt;
+&lt;?php get_footer(); ?&gt;
+</code></pre>
+					</section>
+                    
+				</section>
+                
+                <section data-background="#0073aa">
+					<h1>テーマ開発で困ったら</h1>
+				</section>
+				
+				<section data-background="#ffffff">
+                    <section>
+						<h2>対処方法</h2>
+						<ul>
+							<li>公式リファレンスサイトを確認する</li>
+							<li>フォーラムやGoogleで検索する</li>
+                            <li>フォーラムで質問してみる</li>
+                            <li>サイトを参考にする場合は新しい記事を優先</li>
+						</ul>
+					</section>
+				</section>
+                
+                <section data-background="#0073aa">
+					<h1>ご静聴ありがとう<br>ございました</h1>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
