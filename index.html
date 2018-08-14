@@ -50,8 +50,24 @@
                         <li>SEとしてWebサービスからアプリ開発まで経験</li>
 						<li>2014年、株式会社セラクに入社</li>
                         <li>フロントエンドエンジニアを経て、教育担当へ</li>
-                        <li>趣味：サイト制作・バドミントン</li>
+                        <li>趣味：サイト制作・バドミントン(15年以上)</li>
 					</ul>
+				</section>
+
+				<section data-background="#0073aa">
+					<h1>このスライドについて</h1>
+				</section>
+
+				<section data-background="#ffffff">
+					<section id="fragments" data-background="#ffffff">
+						<h2>実はこのスライド、、、</h2>
+						<h2><span class="fragment">HTMLやJSからできています!</span></h2>
+					</section>
+					<section>
+						<h2>reveal.js</h2>
+						<p>手軽にスライドを作成できるjsフレームワーク</p>
+						<a href="https://revealjs.com/#/" target="_blank"><img width="720" height="343" data-src="pictures/reveal.PNG" alt="REVEAL.JS"></a>
+					</section>
 				</section>
 				
 				<section data-background="#0073aa">
@@ -64,7 +80,6 @@
 						<ul>
 							<li>オープンソースのブログソフトウェア</li>
                             <li>2003年にオープンソースのブログ作成システムとして公開</li>
-                            
 						</ul>
 					</section>
 					<section>
@@ -81,7 +96,7 @@
 					</section>
 					<section>
 						<h2>CMSの種類</h2>
-						<p>現世界で400種類のCMSがある</p>
+						<p>現在、世界で400種類のCMSがある</p>
 						<img width="720" height="360" data-src="pictures/cms-kind.png" alt="CMSの種類">
 					</section>
 					<section>
@@ -94,16 +109,16 @@
 						<ul>
 							<li>オープンソースで無料で利用できる</li>
                             <li>専門知識がなくてもサイトを作成できる</li>
-                            <li>テーマを使って、デザインを自由に切り替えできる</li>
-							<li>プラグインで必要な機能を追加できる</li>
+                            <li>6,000以上の無料<a href="https://ja.wordpress.org/themes/browse/new/" target="_blank">テーマ</a>を使って、デザインを自由に切り替えできる</li>
+							<li>5万以上の<a href="https://ja.wordpress.org/plugins/" target="_blank">プラグイン</a>で必要な機能を追加できる</li>
 						</ul>
 					</section>
                     <section>
 						<h2>WordPressのデメリット</h2>
 						<ul>
-                            <li>インストール作業が必要</li>
-							<li>運営コストがかかる</li>
-                            <li>セキュリティが心配</li>
+                            <li>サーバーへのインストール作業が必要</li>
+							<li>サーバー、ドメイン代など運営コストがかかる</li>
+                            <li>セキュリティリスクが心配</li>
 						</ul>
 					</section>
 					<section>
@@ -115,6 +130,11 @@
 							<li><a href="http://www.shibuya109.jp" target="_blank">渋谷109</a></li>
 						</ul>
 					</section>
+					<section>
+							<h2>ソースコードを見ると</h2>
+							<p>「wp-」とかあるとほぼ確定</p>
+							<pre><code class="hljs">&lt;link rel=&quot;stylesheet&quot; id=&quot;common_style-css&quot;  href=&quot;/wordpress/wp-content/themes/kakakucom/common_style.css?ver=20180329&quot; type=&quot;text/css&quot; media=&quot;all&quot; /&gt;</code></pre>
+						</section>
 					<section>
 						<h2>WordPressの仕組み</h2>
 						<img width="720" height="420" data-src="pictures/cms-function.png" alt="WordPressの仕組み">
@@ -129,12 +149,10 @@
 					<section>
 						<h2>WordPressの他に必要なもの</h2>
 						<ul>
-                            <li>独自ドメイン（お名前.comなど）</li>
-                            <li>レンタルサーバー（さくら、エックスサーバー）</li>
+                            <li>独自ドメイン（<a href="https://www.onamae.com/" target="_blank">お名前.com</a>など）</li>
+                            <li>レンタルサーバー（<a href="https://www.sakura.ad.jp/" target="_blank">さくら</a>、<a href="https://www.xserver.ne.jp/" target="_blank">エックスサーバー</a>など）</li>
 						</ul>
 					</section>
-					
-					
 				</section>
 				
 				<section data-background="#0073aa">
@@ -142,7 +160,18 @@
 				</section>
 				
 				<section data-background="#ffffff">
-                    <section>
+					<section>
+						<h2>ローカル環境とは</h2>
+						<img width="601" height="306" data-src="pictures/local_remote.PNG" alt="ローカルとリモート">
+					</section>
+					<section>
+						<h2>ローカル環境のメリット</h2>
+						<ul>
+							<li>本番環境に近い環境を用意できる</li>
+							<li>自由に開発、検証できる</li>
+						</ul>
+					</section>
+					<section>
 						<h2>ローカル環境ツール</h2>
 						<ul>
 							<li>XAMPP：今までの主流</li>
@@ -521,6 +550,16 @@ if ( function_exists('register_sidebar') ) {
 &lt;?php get_sidebar(); ?&gt;
 &lt;?php get_footer(); ?&gt;
 </code></pre>
+					</section>
+
+					<section>
+						<h3>テーマを有効にする</h3>
+						<img width="717" height="400" data-src="pictures/admin.PNG" alt="テーマの反映">
+					</section>
+
+					<section>
+						<h3>トップページ</h3>
+						<img width="717" height="400" data-src="pictures/admin-2.PNG" alt="テーマの反映">
 					</section>
                     
 				</section>
