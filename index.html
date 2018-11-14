@@ -345,7 +345,7 @@ C:\Users\ユーザー名\Local Sites\サイト名\app\public
                         <pre><code class="hljs">&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;ja&quot;&gt;
 &lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
+	&lt;meta charset=&quot;UTF-8&quot;&gt;
 	&lt;title&gt;タイトル&lt;/title&gt;
 	&lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
 &lt;/head&gt;
@@ -353,28 +353,30 @@ C:\Users\ユーザー名\Local Sites\サイト名\app\public
 	&lt;header&gt;
 		&lt;h1&gt;&lt;a href=&quot;&quot;&gt;サンプルサイト&lt;/a&gt;&lt;/h1&gt;
 	&lt;/header&gt;
-	&lt;main&gt;
-		&lt;section&gt;
-			&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
-			&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
-		&lt;/section&gt;
-		&lt;section&gt;
-			&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
-			&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
-		&lt;/section&gt;
-		&lt;section&gt;
-			&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
-			&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
-		&lt;/section&gt;
-	&lt;/main&gt;
-	&lt;aside&gt;
-		&lt;h2&gt;カテゴリ&lt;/h2&gt;
-		&lt;ul&gt;
-			&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリA&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリB&lt;/a&gt;&lt;/li&gt;
-			&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリC&lt;/a&gt;&lt;/li&gt;
-		&lt;/ul&gt;
-	&lt;/aside&gt;
+	&lt;div class=&quot;site-content&quot;&gt;
+		&lt;main&gt;
+			&lt;article&gt;
+				&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
+				&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
+			&lt;/article&gt;
+			&lt;article&gt;
+				&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
+				&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
+			&lt;/article&gt;
+			&lt;article&gt;
+				&lt;h2&gt;&lt;a href=&quot;&quot;&gt;記事のタイトル&lt;/a&gt;&lt;/h2&gt;
+				&lt;p&gt;記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります記事の抜粋が入ります&lt;/p&gt;
+			&lt;/article&gt;
+		&lt;/main&gt;
+		&lt;aside&gt;
+			&lt;h2&gt;カテゴリ&lt;/h2&gt;
+			&lt;ul&gt;
+				&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリA&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリB&lt;/a&gt;&lt;/li&gt;
+				&lt;li&gt;&lt;a href=&quot;&quot;&gt;カテゴリC&lt;/a&gt;&lt;/li&gt;
+			&lt;/ul&gt;
+		&lt;/aside&gt;
+	&lt;/div&gt;
 	&lt;footer&gt;
 		&lt;small&gt;©2018 xxxx&lt;/small&gt;
 	&lt;/footer&gt;
@@ -395,19 +397,60 @@ Author URI: http://demo.com/
 */
 
 /* 以下ブログテーマのスタイル */
+a {
+	color: #0073aa;
+	text-decoration: none;
+}
+body {
+	background: #fff;
+	color: #32373c;
+	font-family: Open Sans,sans-serif;
+	font-size: 100%;
+	line-height: 1.5;
+	margin: 0;
+}
+header {
+	background: #0073aa;
+	padding: 3.0517578125rem 1.5625rem;
+}
+header h1 a {
+	color: #fff;
+	display: block;
+	font-size: 48.828px;
+	font-size: 3.0517578125rem;
+	font-weight: 300;
+	line-height: 1;
+	margin: 32px 0 16px;
+	margin: 2rem 0 1rem;
+	text-align: center;
+}
+.site-content {
+	margin: 0 auto;
+	max-width: 960px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
 main {
-	float: left;
-	width: 70%;
+	width: 73%;
 }
-
+article {
+	margin-bottom: 3.0517578125rem;
+	max-width: 40em;
+}
+h2 {
+	font-size: 2.44140625rem;
+}
 aside {
-	float: right;
-    width: 25%;
+	width: 23%;
+	font-size: .8rem;
 }
-
 footer {
 	clear: both;
-    text-align: center;
+	text-align: center;
+	background-color: #f7f7f7;
+	border-top: 1px solid #dfdfdf;
+	padding: 22px 14px 65px;
 }
 </code></pre>
 					</section>
@@ -484,6 +527,7 @@ footer {
 	&lt;p&gt;ウィジェットが設定されていない場合、ここが表示されます。&lt;/p&gt;
 &lt;?php endif; ?&gt;
 &lt;/aside&gt;
+&lt;/div&gt;
 </code></pre>
 					</section>
                     <section>
@@ -511,7 +555,8 @@ if ( function_exists('register_sidebar') ) {
 					</section>
                     <section>
 						<h3>index.phpを作成する</h3>
-						<pre><code class="hljs">&lt;main&gt;
+						<pre><code class="hljs">&lt;div class=&quot;site-content&quot;&gt;
+	&lt;main&gt;
 		&lt;?php
 		if ( have_posts() ) : while ( have_posts() ) : the_post();
 		?&gt;
@@ -531,7 +576,7 @@ if ( function_exists('register_sidebar') ) {
                     <section>
 						<h3>single.phpを作成する</h3>
 						<pre><code class="hljs">&lt;?php get_header(); ?&gt;
-
+&lt;div class=&quot;site-content&quot;&gt;
 &lt;main&gt;
    &lt;?php
     if ( have_posts() ) : while ( have_posts() ) : the_post();
