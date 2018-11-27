@@ -555,7 +555,9 @@ if ( function_exists('register_sidebar') ) {
 					</section>
                     <section>
 						<h3>index.phpを作成する</h3>
-						<pre><code class="hljs">&lt;div class=&quot;site-content&quot;&gt;
+                        <p>body終了タグの前の行に以下のタグを挿入</p>
+						<pre><code class="hljs">&lt;?php get_header(); ?&gt;
+&lt;div class=&quot;site-content&quot;&gt;
 	&lt;main&gt;
 		&lt;?php
 		if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -571,6 +573,9 @@ if ( function_exists('register_sidebar') ) {
 		endif;
 		?&gt;
 	&lt;/main&gt;
+
+&lt;?php get_sidebar(); ?&gt;
+&lt;?php get_footer(); ?&gt;
 </code></pre>
 					</section>
                     <section>
